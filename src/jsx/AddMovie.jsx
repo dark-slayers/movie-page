@@ -8,13 +8,24 @@ class AddMovie extends EmptyForm {
     actress: '',
     code: '',
     label: '',
-    level: 2,
+    level: 3,
     path: ''
   };
   handleClick = () => {
     AjaxUtil.post(URL.movie, this.state, function(data) {
       alert(JSON.stringify(data));
     });
+  }
+  createCode = () => {
+    if(this.state.path){
+      let index1=this.state.path.lastIndexOf("\\");
+      let index2=this.state.path.lastIndexOf("/");
+      let index=Math.max(index1,index2)+1;
+      let pointIndex=this.state.path.lastIndexOf(".");
+      let code=this.state.path.substring(index,pointIndex).toUpperCase();
+      const newState={code:code};
+      this.setState(newState);
+    }
   }
   render() {
     const pageStyle = {
@@ -30,6 +41,7 @@ class AddMovie extends EmptyForm {
           <TextInput obj={this} name="level" label="level："/>
           <TextInput obj={this} name="path" label="视频文件路径："/>
           <div style={pageStyle}>
+            <button onClick={this.createCode}>生成CODE</button>
             <button onClick={this.handleClick}>添加</button>
           </div>
         </div>

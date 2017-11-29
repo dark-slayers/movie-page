@@ -10,6 +10,7 @@
     "crypto-js": "^3.1.9-1",
     "css-loader": "^0.25.0",
     "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.30.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
@@ -43,7 +44,9 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack --config webpack.dev.config.js",
-    "start": "copy.bat"
+    "start": "copy.bat",
+    "predev": "clear.bat",
+    "prebuild": "clear.bat"
   },
   "author": "刘湘湘",
   "license": "MIT"
