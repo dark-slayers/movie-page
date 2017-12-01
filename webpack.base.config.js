@@ -50,7 +50,7 @@ var config = {
     }]
   }
 }
-const entrys={'add_movie':'添加视频',};
+const entrys={'add_movie':'添加视频','search_movie':'查询视频',};
 const list = Object.keys(entrys);
 for(let key of list){
   config.entry[key]="./src/entry/"+key+".entry.js",

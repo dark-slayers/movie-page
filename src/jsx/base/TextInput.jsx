@@ -19,7 +19,7 @@ class TextInput extends React.Component {
       : 200;
     const inputWidth = this.props.inputWidth
       ? this.props.inputWidth
-      : 300;
+      : 500;
     const labelStyle = {
       display: 'inline-flex',
       justifyContent: 'flex-end',

@@ -1,4 +1,5 @@
 const url = {
-  movie: '/movie/info',
+  movie: '/movie',
+  movies: '/movies',
 };
 export default url;
