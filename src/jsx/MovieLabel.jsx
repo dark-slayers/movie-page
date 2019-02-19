@@ -21,7 +21,7 @@ class MovieLabel extends React.Component {
         <div>
           <img alt="image" src={imgSrc}/>
         </div>
-        <div><DownloadButton/></div>
+        <div><DownloadButton text="下载"/></div>
       </div>
     );
   }
