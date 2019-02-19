@@ -1,1 +1,1 @@
-del E:\GitProject\movie-page\target\*.* /q
+del .\dist /S/Q

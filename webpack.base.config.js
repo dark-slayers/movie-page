@@ -7,7 +7,7 @@ var config = {
     vendor: ["react", 'react-dom'],
   },
   output: {
-    path: path.resolve(__dirname, './target'),
+    path: path.resolve(__dirname, './dist'),
     filename: "[name].[chunkhash:4].bundle.js"
   },
   plugins: [
@@ -31,7 +31,7 @@ var config = {
             ['env', {
               modules: false,
               "targets": {
-                "browsers": ["Chrome >= 60", "Firefox >= 55"]
+                "browsers": ["Chrome >= 60", "Firefox >= 55","ie >= 9"]
               }
             }],
             ['stage-0'],
@@ -47,19 +47,13 @@ var config = {
       }, {
         loader: 'css-loader',
       }]
+    }, {
+      test: /\.(png|jpg|gif)$/,
+      use: [{
+        loader: 'url-loader?limit=200000',
+      }]
     }]
   }
-}
-const entrys={'add_movie':'添加视频','search_movie':'查询视频',};
-const list = Object.keys(entrys);
-for(let key of list){
-  config.entry[key]="./src/entry/"+key+".entry.js",
-  config.plugins.push(new HtmlWebpackPlugin({
-      title: entrys[key],
-      filename: key+'.html',
-      template: './src/template.html',
-      chunks: ['vendor','runtime',key]
-    }));
 }
 
 module.exports = config;
