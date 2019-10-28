@@ -37,7 +37,7 @@ class TextInput extends React.Component {
     const type=this.getType();
     const lineStyle = {
       display: 'flex',
-      marginBottom: 5
+      marginBottom: 8
     };
     return (
       <div style={lineStyle}>
