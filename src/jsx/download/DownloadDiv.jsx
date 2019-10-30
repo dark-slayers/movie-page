@@ -5,7 +5,7 @@ import DirList from './DirList.jsx';
 class DownloadDiv extends React.Component {
   render () {
     return (<div>
-      <DirList  path={this.props.vo.path} list={this.props.vo.dirList}/>
+      <DirList  path={this.props.vo.path} list={this.props.vo.dirList} call={this.props.call}/>
       <FileList path={this.props.vo.path} list={this.props.vo.fileList}/>
     </div>);
 

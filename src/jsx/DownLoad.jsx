@@ -1,32 +1,38 @@
 import React from 'react';
-import EmptyForm from 'react-ui/lib/form/EmptyForm.js';
-import TextInput from './base/TextInput.jsx';
+import BaseForm from './base/BaseForm.jsx';
+import DownloadDiv from './download/DownloadDiv.jsx';
 import AjaxUtil from '../js/AjaxUtil.js';
 import URL from '../js/URL.js';
-class DownLoad extends EmptyForm {
-  state = {
-    path: '',
-  };
+class F extends BaseForm {
   handleClick = () => {
-    const url = URL.download(this.state.path);
-    console.log("url : " + url);
-    window.open(url);
+    const call = this.props.call;
+    AjaxUtil.get(URL.downloadVO(this.state.path), function(data) {
+      call(data);
+    });
+  }
+}
+class DownLoad extends React.Component {
+  state = {
+    vo: {
+      "path": "",
+      "dirList": [],
+      "fileList": []
+    }
+  }
+  handleCall = (data) => {
+    const newState = {
+      vo: data
+    };
+    this.setState(newState);
   }
   render() {
-    const pageStyle = {
-      display: 'flex',
-      justifyContent: 'center'
+    const template = {
+      path: '路径'
     };
-    return (
-      <div style={pageStyle}>
-        <div>
-          <TextInput obj={this} name="path" label="文件路径：" />
-          <div style={pageStyle}>
-            <button onClick={this.handleClick}>下载</button>
-          </div>
-        </div>
-      </div>
-    );
+    return (<div>
+      <F template={template} call={this.handleCall}/>
+      <DownloadDiv vo={this.state.vo} call={this.handleCall}/>
+    </div>);
   }
 }
 

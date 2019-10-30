@@ -12,8 +12,9 @@ class DirList extends React.Component {
       padding:5
     };
     const path = this.props.path;
+    const call = this.props.call;
     const children = this.props.list.map((ele, index) => {
-      return (<DirButton url={path + '\\' + ele} fileName={ele} key={index}/>);
+      return (<DirButton url={path + '\\' + ele} fileName={ele} key={index} call={call}/>);
     });
 
     return (<div style={divStyle}>{children}</div>);

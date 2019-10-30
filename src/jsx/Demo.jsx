@@ -1,43 +1,37 @@
 import React from 'react';
 import BaseForm from './base/BaseForm.jsx';
 import DownloadDiv from './download/DownloadDiv.jsx';
+import AjaxUtil from '../js/AjaxUtil.js';
+import URL from '../js/URL.js';
 class F extends BaseForm {
   handleClick = () => {
-    alert(JSON.stringify(this.state));
+    const call = this.props.call;
+    AjaxUtil.get(URL.downloadVO(this.state.path), function(data) {
+      call(data);
+    });
   }
 }
 class Demo extends React.Component {
-  render() {
-    const vo = {
-      "path": "E:\\dshell",
-      "dirList": [
-        "log", "news", "test_dir_1", "test_dir_2"
-      ],
-      "fileList": [
-        "11.png",
-        "A.class",
-        "A.java",
-        "B.class",
-        "B.java",
-        "C.class",
-        "C.java",
-        "ERROR.log",
-        "in.txt",
-        "in_1.txt",
-        "output11.txt",
-        "temp.png"
-      ]
+  state = {
+    vo: {
+      "path": "",
+      "dirList": [],
+      "fileList": []
     }
+  }
+  handleCall = (data) => {
+    const newState = {
+      vo: data
+    };
+    this.setState(newState);
+  }
+  render() {
     const template = {
-      actress: 'ACT',
-      code: 'CODE',
-      level: 'LV',
-      t1: '测试属性1',
-      t2: '测试属性2'
+      path: '路径'
     };
     return (<div>
-      <F template={template}/>
-      <DownloadDiv vo={vo}/>
+      <F template={template} call={this.handleCall}/>
+      <DownloadDiv vo={this.state.vo} call={this.handleCall}/>
     </div>);
   }
 }

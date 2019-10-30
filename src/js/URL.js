@@ -3,7 +3,11 @@ const url = {
     movies: '/movies',
     download: function(path) {
         const p = encodeURI(path);
-        return `/dowload/file?path=${p}`;
+        return `/download/file?path=${p}`;
+    },
+    downloadVO: function(path) {
+        const p = encodeURI(path);
+        return `/download/vo?path=${p}`;
     },
 };
 export default url;
